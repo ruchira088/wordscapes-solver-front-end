@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: wordscapes-solver-front-end
+  labels:
+    project: video-downloader-front-end
+    branch: {{ git_branch }}

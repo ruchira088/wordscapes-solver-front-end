@@ -33,6 +33,9 @@ RUN \
 
 # Production image, copy all the files and run next
 FROM base AS runner
+
+LABEL org.opencontainers.image.source=https://github.com/ruchira088/wordscapes-solver-front-end
+
 WORKDIR /app
 
 ENV NODE_ENV production

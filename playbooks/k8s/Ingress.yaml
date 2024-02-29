@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: front-end-ingress
+  namespace: wordscapes-solver-front-end
+spec:
+  tls:
+    - secretName: front-end-tls-secret
+      hosts:
+        - wordscapes-solver.home.ruchij.com
+  rules:
+    - host: wordscapes-solver.home.ruchij.com
+      http:
+        paths:
+          - pathType: ImplementationSpecific
+            backend:
+              service:
+                name: front-end-service
+                port:
+                  name: nextjs-port
