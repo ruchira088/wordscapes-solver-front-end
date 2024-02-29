@@ -1,95 +1,73 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client"
+
+import {useEffect, useState} from "react"
+import {getWords} from "@/app/WordscapesSolver"
+import Keyboard from "react-simple-keyboard"
+
+import "react-simple-keyboard/build/css/index.css"
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+    const [characters, setCharacters] = useState<string[]>([])
+
+    const onKeyPress = (key: string) => {
+        if (key === "Backspace") {
+            setCharacters(chars => {
+                if (chars.length !== 0) {
+                    const [first, ...rest] = chars
+                    return rest
+                } else {
+                    return chars
+                }
+            })
+        } else if (key === "Enter") {
+
+        } else if (key.length === 1 && key.match(/[a-z]/i)){
+            setCharacters( chars => [key, ...chars])
+        }
+    }
+
+    useEffect(() => {
+        const keyDownHandler = (event: KeyboardEvent) => onKeyPress(event.key)
+        document.addEventListener("keydown", keyDownHandler)
+        return () => document.removeEventListener("keydown", keyDownHandler)
+    }, [])
+
+    const onSubmit =
+        async () => {
+            const result = await getWords("loang")
+            console.log(JSON.stringify(result))
+        }
+
+    return (
+        <main>
+            <div>Hello World</div>
+            <button onClick={onSubmit}>Click Me</button>
+            { characters.map((character, index) => <div key={index}>{character}</div>)}
+            <Keyboard onKeyPress={onKeyPress}
+                      physicalKeyboardHighlight={true}
+                      layout={keyboardLayout}
+                      display={keyboardDisplay}
             />
-          </a>
+        </main>
+    )
+}
+
+const CharacterDisplay =
+    (props: {characters: string[]}) => (
+        <div>
+
         </div>
-      </div>
+    )
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+const keyboardLayout = {
+    default: [
+        "Q W E R T Y U I O P",
+        "A S D F G H J K L",
+        "Enter Z X C V B N M Backspace"
+    ]
+}
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+const keyboardDisplay = {
+    Enter: "⏎",
+    Backspace: "⌫"
 }
