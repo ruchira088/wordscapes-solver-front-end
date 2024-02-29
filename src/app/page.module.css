@@ -1,0 +1,43 @@
+.main {
+    position: absolute;
+}
+
+.characterDisplay {
+    padding: 1em 1em 2em 1em;
+}
+
+.wordsDisplay {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.words {
+    text-align: center;
+    padding: 2em;
+
+    .wordsTitle {
+        font-size: 1.25em;
+        padding-bottom: 0.5em;
+    }
+}
+
+.word {
+    font-size: 1em;
+}
+
+.character {
+    margin: 0.3em;
+    font-size: 1.5em;
+    padding: 0.3em;
+    box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.2);
+}
+
+.keyboard {
+    position: fixed;
+    left: 50%;
+    width: 96%;
+    bottom: 0;
+    transform: translate(-50%, -10%);
+    margin: 0 auto;
+}

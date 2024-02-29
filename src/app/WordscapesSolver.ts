@@ -10,7 +10,7 @@ export const getWords = async (word: string): Promise<[number, string[]][]> => {
                 const size = current.length
                 const values = acc.get(size) || []
 
-                acc.set(size, [current, ...values])
+                acc.set(size, [current.toUpperCase(), ...values])
 
                 return acc
             },
