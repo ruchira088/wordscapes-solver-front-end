@@ -3,5 +3,5 @@ kind: Namespace
 metadata:
   name: wordscapes-solver-front-end
   labels:
-    project: video-downloader-front-end
+    project: wordscapes-solver-front-end
     branch: {{ git_branch }}
