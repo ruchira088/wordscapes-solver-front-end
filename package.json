@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "NEXT_PUBLIC_API_URL=http://localhost:8080 next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "node .next/standalone/server.js",
     "lint": "next lint"
   },
   "dependencies": {
