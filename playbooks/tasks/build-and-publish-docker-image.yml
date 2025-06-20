@@ -1,6 +1,12 @@
 - name: Fetch git information
   import_tasks: tasks/git-info.yml
 
+- name: Install npm dependencies
+  shell: cd ../ && npm ci
+
+- name: Build application
+  shell: cd ../ && npm run build
+
 - name: Build Docker image
   when: not publish
   shell: |
@@ -8,7 +14,7 @@
       -f ../Dockerfile \
       -t ghcr.io/ruchira088/wordscapes-solver-front-end:{{ git_branch }} \
       -t ghcr.io/ruchira088/wordscapes-solver-front-end:{{ git_branch }}-{{ git_commit }} \
-      .../
+      ../
 
 - name: Build and publish Docker image
   when: publish
