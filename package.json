@@ -3,23 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NEXT_PUBLIC_API_URL=http://localhost:8080 next dev",
+    "dev": "NEXT_PUBLIC_API_URL=https://api.wordscapes-solver.home.ruchij.com next dev",
     "build": "next build",
     "start": "node .next/standalone/server.js",
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "^14.2.3",
-    "react": "^18",
-    "react-dom": "^18",
-    "react-simple-keyboard": "^3.7.91"
+    "next": "^15.3.4",
+    "react": "^19",
+    "react-dom": "^19",
+    "react-simple-keyboard": "^3.8.87"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8.57.0",
-    "eslint-config-next": "^14.2.3",
+    "@types/node": "^24",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9.29.0",
+    "eslint-config-next": "^15.3.4",
     "typescript": "^5"
   }
 }
